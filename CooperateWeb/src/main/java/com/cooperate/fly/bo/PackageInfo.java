@@ -5,9 +5,9 @@ public class PackageInfo {
 
     private String name;
 
-    private Integer pid;
+    private String pid;
 
-    private Integer sid;
+    private String sid;
 
     private Integer childCount;
 
@@ -31,20 +31,20 @@ public class PackageInfo {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getPid() {
+    public String getPid() {
         return pid;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setPid(String pid) {
+        this.pid = pid == null ? null : pid.trim();
     }
 
-    public Integer getSid() {
+    public String getSid() {
         return sid;
     }
 
-    public void setSid(Integer sid) {
-        this.sid = sid;
+    public void setSid(String sid) {
+        this.sid = sid == null ? null : sid.trim();
     }
 
     public Integer getChildCount() {
