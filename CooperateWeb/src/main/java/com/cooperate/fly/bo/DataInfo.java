@@ -9,6 +9,8 @@ public class DataInfo {
 
     private Integer packageId;
 
+    private Integer parentId;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class DataInfo {
 
     public void setPackageId(Integer packageId) {
         this.packageId = packageId;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 }
