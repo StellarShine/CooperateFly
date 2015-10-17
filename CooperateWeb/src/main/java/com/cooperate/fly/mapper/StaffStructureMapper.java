@@ -1,7 +1,9 @@
 package com.cooperate.fly.mapper;
 
 import com.cooperate.fly.bo.StaffStructure;
+import com.cooperate.fly.datasource.SqlMapper;
 
+@SqlMapper
 public interface StaffStructureMapper {
     int deleteByPrimaryKey(Integer id);
 

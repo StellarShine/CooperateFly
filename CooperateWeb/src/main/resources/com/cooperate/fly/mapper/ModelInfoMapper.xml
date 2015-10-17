@@ -68,4 +68,9 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateStateById" parameterType="com.cooperate.fly.bo.ModelInfo" >
+    update model_info
+    set state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -1,7 +1,9 @@
 package com.cooperate.fly.mapper;
 
 import com.cooperate.fly.bo.DataValue;
+import com.cooperate.fly.datasource.SqlMapper;
 
+@SqlMapper
 public interface DataValueMapper {
     int deleteByPrimaryKey(Integer id);
 

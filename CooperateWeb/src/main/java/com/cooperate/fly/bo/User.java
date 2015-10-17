@@ -1,6 +1,8 @@
 package com.cooperate.fly.bo;
 
-public class UserInfo {
+import java.util.Date;
+
+public class User {
     private Integer id;
 
     private String userName;
@@ -9,7 +11,13 @@ public class UserInfo {
 
     private String packageId;
 
-    private Integer role;
+    private Integer roleId;
+
+    private Date addTime;
+
+    private Integer menuId;
+
+    private String message;
 
     public Integer getId() {
         return id;
@@ -43,11 +51,35 @@ public class UserInfo {
         this.packageId = packageId == null ? null : packageId.trim();
     }
 
-    public Integer getRole() {
-        return role;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
+    public Integer getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message == null ? null : message.trim();
     }
 }

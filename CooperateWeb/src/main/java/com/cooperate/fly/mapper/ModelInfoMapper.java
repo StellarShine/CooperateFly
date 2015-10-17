@@ -1,7 +1,9 @@
 package com.cooperate.fly.mapper;
 
 import com.cooperate.fly.bo.ModelInfo;
+import com.cooperate.fly.datasource.SqlMapper;
 
+@SqlMapper
 public interface ModelInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface ModelInfoMapper {
     int updateByPrimaryKeySelective(ModelInfo record);
 
     int updateByPrimaryKey(ModelInfo record);
+    
+    int updateStateById(ModelInfo modelInfo);
 }

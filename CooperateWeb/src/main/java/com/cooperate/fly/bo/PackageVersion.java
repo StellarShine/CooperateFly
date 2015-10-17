@@ -11,7 +11,7 @@ public class PackageVersion {
 
     private Integer versionId;
 
-    private Integer parentId;
+    private String parentId;
 
     public Integer getId() {
         return id;
@@ -45,11 +45,11 @@ public class PackageVersion {
         this.versionId = versionId;
     }
 
-    public Integer getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setParentId(String parentId) {
+        this.parentId = parentId == null ? null : parentId.trim();
     }
 }

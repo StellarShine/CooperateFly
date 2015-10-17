@@ -1,7 +1,11 @@
 package com.cooperate.fly.mapper;
 
-import com.cooperate.fly.bo.PackageInfo;
+import java.util.List;
 
+import com.cooperate.fly.bo.PackageInfo;
+import com.cooperate.fly.datasource.SqlMapper;
+
+@SqlMapper
 public interface PackageInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -10,6 +14,14 @@ public interface PackageInfoMapper {
     int insertSelective(PackageInfo record);
 
     PackageInfo selectByPrimaryKey(Integer id);
+    
+    /**
+     * 根据模型id取出所有的数据包
+     * @param id
+     * @return
+     */
+    
+    List<PackageInfo> selectByModelId(Integer id);
 
     int updateByPrimaryKeySelective(PackageInfo record);
 

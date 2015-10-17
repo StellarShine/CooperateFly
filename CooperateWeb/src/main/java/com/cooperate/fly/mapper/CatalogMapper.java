@@ -1,7 +1,9 @@
 package com.cooperate.fly.mapper;
 
 import com.cooperate.fly.bo.Catalog;
+import com.cooperate.fly.datasource.SqlMapper;
 
+@SqlMapper
 public interface CatalogMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,20 @@ public interface CatalogMapper {
     int updateByPrimaryKeySelective(Catalog record);
 
     int updateByPrimaryKey(Catalog record);
+    
+    /**
+     * 根据目录名称获取
+     * @param name
+     * @return
+     */
+    Catalog selectByName(String name);
+    Catalog selectByPid(Integer id);
+    
+    /**
+     * 修改节点名称
+     * @param name
+     * @param Id
+     * @return
+     */
+    int updateNameById(Catalog catalog);
 }

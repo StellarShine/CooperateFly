@@ -9,9 +9,9 @@ public class PackageInfo {
 
     private String sid;
 
-    private Integer childCount;
-
     private Integer directorId;
+
+    private Integer modelId;
 
     private String extraAttributes;
 
@@ -47,20 +47,20 @@ public class PackageInfo {
         this.sid = sid == null ? null : sid.trim();
     }
 
-    public Integer getChildCount() {
-        return childCount;
-    }
-
-    public void setChildCount(Integer childCount) {
-        this.childCount = childCount;
-    }
-
     public Integer getDirectorId() {
         return directorId;
     }
 
     public void setDirectorId(Integer directorId) {
         this.directorId = directorId;
+    }
+
+    public Integer getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(Integer modelId) {
+        this.modelId = modelId;
     }
 
     public String getExtraAttributes() {
