@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,6 +11,8 @@
     <script type="text/javascript" src="<%=request.getContextPath() %>/resources/easyui/locale/easyui-lang-zh_CN.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/style/main.css">
     <script type="text/javascript">
+
+        var userlist = <%=request.getAttribute("userJson")%>;
         var UrlConfig = {
             SysUserList: '<%=request.getContextPath() %>/user/list',
             SysUserPage: '<%=request.getContextPath() %>/user/page',
@@ -21,9 +23,64 @@
             SysRoleList: '<%=request.getContextPath() %>/role/list',
             SysGroupList: '<%=request.getContextPath() %>/group/groupList'
         };
-        var userlist = <%=request.getAttribute("userJson")%>;
-
         var url;
+        var roles = [
+            {roleId:1,roleName:'系统管理员'},
+            {roleId:2,roleName:'数据区管理员'},
+            {roleId:3,roleName:'工程师'},
+            {roleId:4,roleName:'阅览者'}
+        ];
+
+        function roleFormatter(value){
+            for(var i=0;i<roles.length;i++){
+                if(roles[i].roleId==value)
+                    return roles[i].roleName;
+            }
+            return value;
+        }
+        $(function(){
+            var lastIndex;
+            $('#tb').datagrid({
+                toolbar:[{
+                    text:'添加用户',
+                    iconCls:'icon-add',
+                    handler:function(){
+                        $('#tb').datagrid('endEdit',lastIndex);
+                        $('#tb').datagrid('appendRow',{
+                            userName:'',
+                            password:'',
+                            roleId:'',
+                            groupId:''
+                        });
+                        lastIndex=$('#tb').datagrid('getRows').length-1;
+                        $('#tb').datagrid('selectRow',lastIndex);
+                        $('#tb').datagrid('beginEdit',lastIndex);
+                    }
+                },'-',{
+                    text:'删除用户',
+                    iconCls:'icon-remove',
+                    handler:function(){
+                        var row=$('#tb').datagrid('getSelected');
+                        if(row){
+                            var index=$('#tb').datagrid('getRowIndex',row);
+                            $('#tt').datagrid('deleteRow',index);
+                        }
+                    }
+                },'-',{
+                    text:'保存',
+                    iconCls:'icon-save',
+                    handler:function(){
+                        $('#tb').datagrid('acceptChanges');
+                    }
+                },'-',{
+                    text:'撤销',
+                    iconCls:'icon-undo',
+                    handler:function(){
+                        $('#tb').datagrid('rejectChanges');
+                    }
+                }]
+            })
+        });
 
         var editIndex = undefined;
         function endEditing(){
@@ -80,6 +137,7 @@
 <body>
 
 <div style="margin:20px 0;"></div>
+<div id="login_user_info">欢迎你：${currentUser.userName}. <a href="<%=request.getContextPath() %>/logout">退出</a></div>
 <div id="p" class="easyui-panel" title="系统管理" iconCls='icon-edit' style="width:800px;height:650px;padding:10px;">
     <div  class="easyui-tabs" style="width:770px;height:600px">
         <div title="用户管理" style="padding:10px">
@@ -103,7 +161,7 @@
                         }
                     }">用户名称</th>
                     <th data-options="field:'password',width:150,editor:'button'">重置密码</th>
-                    <th data-options="field:'roleId',width:180,
+                    <th data-options="field:'roleId',width:185,
 						formatter:function(value,row){
 							return row.roleName;
 						},
@@ -118,7 +176,7 @@
 							}
 						}">用户角色</th>
 
-                    <th data-options="field:'groupId',width:180,
+                    <th data-options="field:'groupId',width:185,
 						formatter:function(value,row){
 							return row.groupName;
 						},
@@ -129,7 +187,6 @@
 								textField:'groupName',
 								method:'get',
 								url:UrlConfig.SysGroupList,
-								required:true
 							}
 						}">用户群组</th>
                 </tr>
