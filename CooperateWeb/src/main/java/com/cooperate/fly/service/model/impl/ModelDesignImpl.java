@@ -1,7 +1,6 @@
 package com.cooperate.fly.service.model.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,7 @@ import com.cooperate.fly.util.Utils;
 @Service("modelDesign")
 public class ModelDesignImpl implements ModelDesign {
 
-	int id = 0;
+	//int id = 0;
 	@Autowired
 	CatalogMapper catalogmapper;
 	@Autowired
@@ -29,28 +28,29 @@ public class ModelDesignImpl implements ModelDesign {
 	PackageInfoMapper packageinfomapper;
 	@Autowired
 	ModelInfoMapper modelinfomapper;
+
 	@Override
-	public int createNoneLeafCatalogNode(String nodeName, int parentId) {
-		id ++;
+	public int createModelCatalogNode(String nodeName, int parentId) {
 		Catalog record = new Catalog();
-		record.setId(id);
 		record.setName(nodeName);
 		record.setParentId(parentId);
 		record.setType(0);        //1:����ڵ�
 		catalogmapper.insert(record);
 		return 0;
 	}
-	
+
+
 	@Override
 	public int createModelNode(String nodeName, int parentId){
-		id ++;
+		//id ++;
 		Catalog record = new Catalog();
-		record.setId(id);
+		//record.setId(id);
 		record.setName(nodeName);
 		record.setParentId(parentId);
 		record.setType(1);        //1:��ģ�ͽڵ�
 		catalogmapper.insert(record);
 		//create model
+		int id = catalogmapper.selectLastInsertId();
 		ModelInfo model = new ModelInfo();
 		model.setId(id);
 		model.setName(nodeName);
@@ -61,22 +61,24 @@ public class ModelDesignImpl implements ModelDesign {
 
 	@Override
 	public int createPackageNode(String nodeName, int parentId) {
-		id ++;
+		//id ++;
 		Catalog record = new Catalog();
-		record.setId(id);
+		//record.setId(id);
 		record.setName(nodeName);
 		record.setParentId(parentId);
-		record.setType(2);        //2:��ݰ�ڵ�
+		record.setType(3);        //2:��ݰ�ڵ�
 		catalogmapper.insert(record);
 		//create package
+		int id = catalogmapper.selectLastInsertId();
 		PackageInfo new_package = new PackageInfo();
 		new_package.setId(id);
 		new_package.setName(nodeName);
-		new_package.setPid("");
+		new_package.setPid(Integer.toString(parentId));
 		new_package.setSid("");
 		new_package.setDirectorId(0);
 		int modelId = getItsModelId(id);
 		new_package.setModelId(modelId);
+		packageinfomapper.insert(new_package);
 		return 0;
 	}
 	
@@ -120,7 +122,22 @@ public class ModelDesignImpl implements ModelDesign {
 		datainfomapper.deleteByPrimaryKey(nodeId);
 		return 0;
 	}
-	
+
+	@Override
+	public int deleteDataNodeRecursively(int nodeId) {
+//		Set<Integer> toDelete = new HashSet<Integer>();
+//		Set<Catalog> toRetrive = new HashSet<Catalog>();
+//		Catalog root = catalogmapper.selectByPid(nodeId);
+//		toRetrive.add(root);
+//
+//		while (!toRetrive.isEmpty()){
+//			for (Catalog catalog : toRetrive){
+//				Catalog candidate = catalogmapper
+//			}
+//		}
+		return 0;
+	}
+
 	@Override
 	public int updateDataNode(DataInfo dataInfo){
 		datainfomapper.updateNameById(dataInfo);
@@ -225,12 +242,38 @@ public class ModelDesignImpl implements ModelDesign {
 	private int getItsModelId(int packageId){
 		Catalog node = catalogmapper.selectByPrimaryKey(packageId);
 		int type = node.getType();
+
+		//顶层根类型modelId
+		if(type == 0)
+			return 0;
 		while(type!=1){
 			int parentId = node.getParentId();
-			node = catalogmapper.selectByPid(parentId);
+			node = catalogmapper.selectByPrimaryKey(parentId);
 			type = node.getType();
 		}
 		return node.getId();
+	}
+
+	@Override
+	public int createPackageCatalogNode(String nodeName, int parentId) {
+		Catalog record = new Catalog();
+		record.setName(nodeName);
+		record.setParentId(parentId);
+		record.setType(2);        //2
+		catalogmapper.insert(record);
+		return 0;
+	}
+
+	@Override
+	public List<Catalog> getCatalogNodes() {
+		return catalogmapper.selectAll();
+	}
+
+	@Override
+	public List<PackageInfo> getPackagesByCatalogId(int catalogId) {
+		Catalog catalog = catalogmapper.selectByPrimaryKey(catalogId);
+		int modelId = getItsModelId(catalog.getParentId());
+		return getPackages(modelId);
 	}
 
 }

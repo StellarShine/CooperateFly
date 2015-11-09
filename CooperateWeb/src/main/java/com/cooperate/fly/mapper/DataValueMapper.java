@@ -13,6 +13,8 @@ public interface DataValueMapper {
 
     DataValue selectByPrimaryKey(Integer id);
 
+    DataValue selectByInfoId(Integer id);
+
     int updateByPrimaryKeySelective(DataValue record);
 
     int updateByPrimaryKeyWithBLOBs(DataValue record);

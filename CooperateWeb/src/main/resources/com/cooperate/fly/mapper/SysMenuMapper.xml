@@ -17,6 +17,21 @@
     from sys_menu
     where menu_id = #{menuId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *
+    from sys_menu
+  </select>
+  <select id="selectByChildId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+ 			distinct m.menu_id,m.menu_name,m.menu_url,m.parent_menu_id
+    from sys_menu m
+    start with m.menu_id in
+    <foreach item="item" index="index" collection="list"
+    	open="(" separator="," close=")">
+    	#{item}
+    </foreach>
+    	connect by prior m.parent_menu_id=m.menu_id
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_menu
     where menu_id = #{menuId,jdbcType=INTEGER}

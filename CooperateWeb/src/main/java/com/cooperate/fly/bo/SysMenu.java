@@ -1,6 +1,8 @@
 package com.cooperate.fly.bo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class SysMenu {
     private Integer menuId;
@@ -12,6 +14,22 @@ public class SysMenu {
     private Integer parentMenuId;
 
     private Date updateTime;
+    
+    private List<SysMenu> children = new ArrayList<SysMenu>();
+    
+    public void addChild(SysMenu menu) {
+		if (! this.children.contains(menu)) {
+			this.children.add(menu);
+		}
+	}
+    
+    public List<SysMenu> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<SysMenu> children) {
+		this.children = children;
+	}
 
     public Integer getMenuId() {
         return menuId;

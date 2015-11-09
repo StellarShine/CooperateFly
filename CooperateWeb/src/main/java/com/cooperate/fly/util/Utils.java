@@ -5,11 +5,11 @@ import java.util.Date;
 public class Utils {
 
 	
-	public static int findParentWhenCreated(){   //创建节点时找到节点位置，与网页插件有关，可能是从XML获取
+	public static int findParentWhenCreated(){   //锟斤拷锟斤拷锟节碉拷时锟揭碉拷锟节碉拷位锟矫ｏ拷锟斤拷锟斤拷页锟斤拷锟斤拷泄兀锟斤拷锟斤拷锟斤拷谴锟絏ML锟斤拷取
 		return 0;
 	}
 	
-	public static int getIdWhenfocused(){       //点击某节点时，得到该节点ID，可能是从XML获取
+	public static int getIdWhenfocused(){       //锟斤拷锟侥筹拷诘锟绞憋拷锟斤拷玫锟斤拷媒诘锟絀D锟斤拷锟斤拷锟斤拷锟角达拷XML锟斤拷取
 		return 0;
 	}
 	

@@ -1,5 +1,7 @@
 package com.cooperate.fly.mapper;
 
+import java.util.List;
+
 import com.cooperate.fly.bo.Catalog;
 import com.cooperate.fly.datasource.SqlMapper;
 
@@ -10,6 +12,8 @@ public interface CatalogMapper {
     int insert(Catalog record);
 
     int insertSelective(Catalog record);
+
+    int selectLastInsertId();
 
     Catalog selectByPrimaryKey(Integer id);
 
@@ -23,7 +27,7 @@ public interface CatalogMapper {
      * @return
      */
     Catalog selectByName(String name);
-    Catalog selectByPid(Integer id);
+    Catalog selectByPid(Integer pid);
     
     /**
      * 修改节点名称
@@ -32,4 +36,10 @@ public interface CatalogMapper {
      * @return
      */
     int updateNameById(Catalog catalog);
+    
+    /**
+     * 获取所有目录节点
+     * @return
+     */
+    List<Catalog> selectAll();
 }

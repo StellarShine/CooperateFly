@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cooperate.fly.bo.DataInfo;
 import com.cooperate.fly.bo.DataValue;
@@ -20,6 +21,7 @@ import com.cooperate.fly.mapper.UserMapper;
 import com.cooperate.fly.service.operator.DataOperate;
 import com.cooperate.fly.util.Utils;
 
+@Service
 public class DataOperateImpl implements DataOperate {
 
 	int version_id = 0;
