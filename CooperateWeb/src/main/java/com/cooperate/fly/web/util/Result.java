@@ -1,8 +1,10 @@
 package com.cooperate.fly.web.util;
 
+
 import java.util.List;
 
 import com.cooperate.fly.bo.PackageVersion;
+
 
 public class Result {
 
@@ -29,12 +31,10 @@ public class Result {
 	public void setList2(List<?> list2) {
 		this.list2 = list2;
 	}
-
-
+	
 	public Result(){
 	}
 	
-
 	public Result(boolean successful){
 		this(successful,null);
 	}

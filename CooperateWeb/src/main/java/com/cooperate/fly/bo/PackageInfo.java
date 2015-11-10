@@ -68,6 +68,6 @@ public class PackageInfo {
     }
 
     public void setExtraAttributes(String extraAttributes) {
-        this.extraAttributes = extraAttributes == null ? null : extraAttributes.trim();
+        this.extraAttributes = (extraAttributes == null ? null : extraAttributes.trim());
     }
 }

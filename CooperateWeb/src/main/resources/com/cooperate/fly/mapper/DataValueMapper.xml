@@ -10,7 +10,7 @@
     <result column="value" property="value" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, version_id, data_info_id
+    id, version_id, data_info_id,value
   </sql>
   <sql id="Blob_Column_List" >
     value
@@ -23,6 +23,7 @@
     from data_value
     where id = #{id,jdbcType=INTEGER}
   </select>
+<<<<<<< HEAD
   <select id="selectByVersion" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -30,6 +31,14 @@
     <include refid="Blob_Column_List" />
     from data_value
     where version_id = #{versionId,jdbcType=INTEGER}
+=======
+
+  <select id="selectByInfoId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from data_value
+    where data_info_id = #{id,jdbcType=INTEGER}
+>>>>>>> origin/master
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from data_value

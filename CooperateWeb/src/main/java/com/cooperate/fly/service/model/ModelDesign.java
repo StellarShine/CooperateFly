@@ -6,18 +6,28 @@ import com.cooperate.fly.bo.Catalog;
 import com.cooperate.fly.bo.DataInfo;
 import com.cooperate.fly.bo.ModelInfo;
 import com.cooperate.fly.bo.PackageInfo;
+import org.apache.taglibs.standard.tag.common.core.CatchTag;
 
 public interface ModelDesign {
 
 	/**
 	 * 创建主模型目录节点，一般操作为点击父节点，创建新节点，点击父节点时需要获取到其Id，
 	 * 在创建第一个节点时，parrentId默认为0
+<<<<<<< HEAD
 	 * @param nodeName 用户输入的节点名称 
 	 * @param parentId 父节点Id
 	 * @return 
 	 */
 	int createModelCatalogNode(String nodeName, int parentId);
 	
+=======
+	 * @param nodeName 用户输入的节点名称
+	 * @param parentId 父节点Id
+	 * @return
+	 */
+	int createModelCatalogNode(String nodeName, int parentId);
+
+>>>>>>> origin/master
 	/**
 	 * 创建主模型节点
 	 * @param nodeName
@@ -25,7 +35,11 @@ public interface ModelDesign {
 	 * @return
 	 */
 	int createModelNode(String nodeName, int parentId);
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> origin/master
 	/**
 	 * 创建数据包目录节点
 	 * @param nodeName
@@ -33,7 +47,11 @@ public interface ModelDesign {
 	 * @return
 	 */
 	int createPackageCatalogNode(String nodeName, int parentId);
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> origin/master
 	/**
 	 * 创建数据包节点
 	 * @param nodeName
@@ -41,7 +59,12 @@ public interface ModelDesign {
 	 * @return
 	 */
 	int createPackageNode(String nodeName, int parentId);
+<<<<<<< HEAD
 	
+=======
+
+
+>>>>>>> origin/master
 	/**
 	 * 删除该节点
 	 * @param nodeId
@@ -63,7 +86,11 @@ public interface ModelDesign {
 	 * @param nodeId 所属数据包节点Id
 	 * @return
 	 */
+<<<<<<< HEAD
 	int createNoneLeafDataNode(String nodeName, int nodeId, int parentId);
+=======
+	int createNoneLeafDataNode(String nodeName, int nodeId);
+>>>>>>> origin/master
 	
 	/**
 	 * 创建数据项节点
@@ -72,7 +99,11 @@ public interface ModelDesign {
 	 * @param nodeId 数据包几点的id
 	 * @return
 	 */
+<<<<<<< HEAD
 	int createLeafDataNode(String nodeName, int type, int nodeId, int parentId);
+=======
+	int createLeafDataNode(String nodeName, int type, int nodeId);
+>>>>>>> origin/master
 	
 	/**
 	 * 删除数据项节点
@@ -80,6 +111,16 @@ public interface ModelDesign {
 	 * @return
 	 */
 	int deleteDataNode(int nodeId);
+<<<<<<< HEAD
+=======
+
+	/**
+	 * 递归删除节点
+	 * @param nodeId
+	 * @return
+	 */
+	int deleteDataNodeRecursively(int nodeId);
+>>>>>>> origin/master
 	
 	/**
 	 * 更新数据项节点
@@ -129,7 +170,16 @@ public interface ModelDesign {
 	 * @return
 	 */
 	List<Catalog> getCatalogNodes();
+<<<<<<< HEAD
 	
 	
+=======
+
+	/**
+	 * 根据catalogId获取所有package
+	 * @return
+	 */
+	List<PackageInfo> getPackagesByCatalogId(int catalogId);
+>>>>>>> origin/master
 	
 }

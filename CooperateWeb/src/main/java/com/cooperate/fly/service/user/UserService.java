@@ -28,4 +28,8 @@ public interface UserService {
 	void resetPassword(int userId);
 	
 	User loadUserByUserNameAndPassword(String userName,String password);
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 }

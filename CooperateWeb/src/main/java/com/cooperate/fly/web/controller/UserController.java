@@ -33,7 +33,11 @@ public class UserController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public List<User> list(){
+<<<<<<< HEAD
 		return this.userService.findAll();
+=======
+        return userService.findAll();
+>>>>>>> origin/master
 	}
 	
 	@RequestMapping("/page")

@@ -59,6 +59,7 @@
 
 <script>
 var UrlConfig = {
+<<<<<<< HEAD
 	SysUserList: '<%=request.getContextPath() %>/user/list',
 	SysUserPage: '<%=request.getContextPath() %>/user/page',
 	SysUserAdd: '<%=request.getContextPath() %>/user/add',
@@ -68,6 +69,17 @@ var UrlConfig = {
 	
 	SysRoleList: '<%=request.getContextPath() %>/role/listNoRoot',
 	SysGroupList: '<%=request.getContextPath() %>/group/ownGroups'
+=======
+    SysUserList: '<%=request.getContextPath() %>/user/list',
+    SysUserPage: '<%=request.getContextPath() %>/user/page',
+    SysUserAdd: '<%=request.getContextPath() %>/user/add',
+    SysUserUpdate: '<%=request.getContextPath() %>/sys/user/update',
+    SysUserDelete: '<%=request.getContextPath() %>/sys/user/delete',
+    SysUserResetPassword: '<%=request.getContextPath() %>/user/resetPassword',
+
+    SysRoleList: '<%=request.getContextPath() %>/role/listNoRoot',
+    SysGroupList: '<%=request.getContextPath() %>/group/ownGroups'
+>>>>>>> origin/master
 };
 
 $(function(){
