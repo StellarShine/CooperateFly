@@ -16,11 +16,8 @@ public interface DataValueMapper {
     DataValue selectByPrimaryKey(Integer id);
     
     List<DataValue> selectByVersion(Integer version_id);
-<<<<<<< HEAD
 
     DataValue selectByInfoId(Integer id);
-=======
->>>>>>> parent of c597947... Revert "合并"
 
     int updateByPrimaryKeySelective(DataValue record);
 
