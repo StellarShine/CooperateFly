@@ -15,7 +15,7 @@ public class User {
 
     private Date addTime;
 
-    private Integer groupId;
+    private Integer menuId;
 
     private String message;
 
@@ -67,12 +67,12 @@ public class User {
         this.addTime = addTime;
     }
 
-    public Integer getGroupId() {
-        return groupId;
+    public Integer getMenuId() {
+        return menuId;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
     }
 
     public String getMessage() {

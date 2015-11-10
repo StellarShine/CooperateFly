@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.cooperate.fly.bo.DataInfo;
 import com.cooperate.fly.bo.DataValue;
@@ -21,7 +20,6 @@ import com.cooperate.fly.mapper.UserMapper;
 import com.cooperate.fly.service.operator.DataOperate;
 import com.cooperate.fly.util.Utils;
 
-@Service
 public class DataOperateImpl implements DataOperate {
 
 	int version_id = 0;
@@ -61,43 +59,13 @@ public class DataOperateImpl implements DataOperate {
 	}
 
 	@Override
-	public int createVersion(int packageId,String parent_version_id) {//caogao,put caogao in database set version_id=0
+	public PackageVersion createVersion(int packageId,String parent_version_id) {
 		PackageVersion pv = new PackageVersion();
 		pv.setPackageId(packageId);
 		pv.setParentId(parent_version_id);
-		pv.setSubmitTime(Utils.NowTime());
-		pv.setVersionId(0);
-		return packageversionmapper.insert(pv);
-	}
-	
-	@Override
-	public void initCaogaoValue(int caogao_id,int package_id) {
-		List<DataInfo> data_info_list = getDataOfPackage(package_id);
-		DataValue record = new DataValue();
-		for(int i=0;i<data_info_list.size();i++){
-			if(data_info_list.get(i).getType()!=0){
-				record.setDataInfoId(data_info_list.get(i).getId());
-				record.setVersionId(caogao_id);
-				record.setValue(" ");
-				datavaluemapper.insert(record);
-			}
-		}
+		return pv;
 	}
 
-	@Override
-	public void updateCaogaoValue(String input, String data_info,int caogao_id) {
-		String[] input_arr = input.split("#");
-		String[] data_info_arr = data_info.split("#");
-		DataValue record = new DataValue();
-		for(int i=1;i<input_arr.length;i++){
-			record.setVersionId(caogao_id);
-			record.setDataInfoId(Integer.parseInt(data_info_arr[i]));
-			record.setValue(input_arr[i]);
-			datavaluemapper.updateCaogaoValue(record);
-		}
-		
-	}
-	
 	@Override
 	public List<PackageInfo> getUpPackages(int packageId) {
 		PackageInfo the_package = packageinfomapper.selectByPrimaryKey(packageId);
@@ -189,32 +157,5 @@ public class DataOperateImpl implements DataOperate {
 		}
 		return leafData_list;
 	}
-
-	@Override
-	public PackageInfo getPackageById(int id) {
-		return packageinfomapper.selectByPrimaryKey(id);
-	}
-
-	@Override
-	public List<DataValue> getDataValueOfVersion(int version_id) {
-		
-		return datavaluemapper.selectByVersion(version_id);
-	}
-
-
-	@Override
-	public PackageVersion getCaogao(int package_id) {
-		return packageversionmapper.selectCaogao(package_id);
-	}
-
-	@Override
-	public void commitCaogao(int package_id) {
-		int count = getPackageVersions(package_id).size();
-		PackageVersion pv = new PackageVersion();
-		pv.setVersionId(count);
-		pv.setPackageId(package_id);
-		packageversionmapper.commitCaogao(pv);
-	}
-
 
 }

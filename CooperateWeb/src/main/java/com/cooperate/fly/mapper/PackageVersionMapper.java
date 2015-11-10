@@ -23,15 +23,4 @@ public interface PackageVersionMapper {
      * 根据数据包Id选出所有的版本
      */
     List<PackageVersion> selectByPackageId(Integer packageId);
-    /**
-     * 得到数据包的草稿
-     * @return
-     */
-    PackageVersion selectCaogao(Integer packageId);
-    /**
-     * 提交草稿
-     * @param packageId
-     * @return
-     */
-    int commitCaogao(PackageVersion record);
 }

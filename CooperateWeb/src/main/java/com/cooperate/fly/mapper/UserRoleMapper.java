@@ -1,7 +1,5 @@
 package com.cooperate.fly.mapper;
 
-import java.util.List;
-
 import com.cooperate.fly.bo.UserRole;
 import com.cooperate.fly.datasource.SqlMapper;
 
@@ -18,6 +16,4 @@ public interface UserRoleMapper {
     int updateByPrimaryKeySelective(UserRole record);
 
     int updateByPrimaryKey(UserRole record);
-    
-    List<UserRole> selectAll();
 }

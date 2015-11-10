@@ -1,7 +1,5 @@
 package com.cooperate.fly.mapper;
 
-import java.util.List;
-
 import com.cooperate.fly.bo.UserGroup;
 import com.cooperate.fly.datasource.SqlMapper;
 
@@ -14,10 +12,6 @@ public interface UserGroupMapper {
     int insertSelective(UserGroup record);
 
     UserGroup selectByPrimaryKey(Integer groupId);
-    
-    UserGroup selectByGroupName(String groupName);
-    
-    List<UserGroup> selectAll();
 
     int updateByPrimaryKeySelective(UserGroup record);
 

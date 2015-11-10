@@ -1,7 +1,5 @@
 package com.cooperate.fly.mapper;
 
-import java.util.List;
-
 import com.cooperate.fly.bo.SysMenu;
 import com.cooperate.fly.datasource.SqlMapper;
 
@@ -18,13 +16,4 @@ public interface SysMenuMapper {
     int updateByPrimaryKeySelective(SysMenu record);
 
     int updateByPrimaryKey(SysMenu record);
-    
-    List<SysMenu> selectAll();
-    
-    /**
-     * 通过孩子节点id搜索parentId递归整个树到根节点
-     * @param menId
-     * @return
-     */
-    List<SysMenu> selectByChildId(List<Integer> menId);
 }

@@ -17,16 +17,6 @@
     from user_group
     where group_id = #{groupId,jdbcType=INTEGER}
   </select>
-  <select id="selectByGroupName" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from user_group
-    where group_name = #{groupName,jdbcType=VARCHAR}
-  </select>
-   <select id="selectAll" resultMap="BaseResultMap" >
-    select *
-    from user_group
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user_group
     where group_id = #{groupId,jdbcType=INTEGER}
