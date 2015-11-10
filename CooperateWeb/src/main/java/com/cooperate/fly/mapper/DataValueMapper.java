@@ -17,6 +17,8 @@ public interface DataValueMapper {
     
     List<DataValue> selectByVersion(Integer version_id);
 
+    DataValue selectByInfoId(Integer id);
+
     int updateByPrimaryKeySelective(DataValue record);
 
     int updateByPrimaryKeyWithBLOBs(DataValue record);

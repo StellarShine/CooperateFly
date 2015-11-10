@@ -31,7 +31,11 @@ public interface DataOperate {
 	 * @param parent_version_id 
 	 * @return  PackageVersion对象 作为commitversion的参数之一
 	 */
+<<<<<<< HEAD
 	int createVersion(int packageId, String parent_version_id);
+=======
+	PackageVersion createVersion(int packageId, String parent_version_id);
+>>>>>>> origin/master
 	
 	/**
 	 * 得到所有的上游数据包
@@ -93,6 +97,7 @@ public interface DataOperate {
 	 */
 	int isModelOver(int packageId);
 	
+<<<<<<< HEAD
 	/**
 	 * 根据id得到数据包
 	 * @param id 数据包id
@@ -126,4 +131,6 @@ public interface DataOperate {
 	void updateCaogaoValue(String input,String data_info,int caogao_id);
 	
 	void commitCaogao(int package_id);
+=======
+>>>>>>> origin/master
 }

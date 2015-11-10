@@ -13,6 +13,8 @@ public interface CatalogMapper {
 
     int insertSelective(Catalog record);
 
+    int selectLastInsertId();
+
     Catalog selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Catalog record);
@@ -25,7 +27,7 @@ public interface CatalogMapper {
      * @return
      */
     Catalog selectByName(String name);
-    Catalog selectByPid(Integer id);
+    Catalog selectByPid(Integer pid);
     
     /**
      * 修改节点名称

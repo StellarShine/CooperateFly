@@ -1,3 +1,7 @@
+import com.cooperate.fly.bo.*;
+import com.cooperate.fly.mapper.CatalogMapper;
+import com.cooperate.fly.mapper.DataValueMapper;
+import com.cooperate.fly.mapper.PackageInfoMapper;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,8 +45,20 @@ public class TestMybatis extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	private RoleMenuService roleMenuService;
+<<<<<<< HEAD
 	
 		
+=======
+
+	@Autowired
+	private CatalogMapper mapper;
+
+	@Autowired
+	private PackageInfoMapper packageInfoMapper;
+
+	@Autowired
+	private DataValueMapper dataValueMapper;
+>>>>>>> origin/master
 	/*@Test
 	public void test1(){
 			
@@ -50,6 +66,7 @@ public class TestMybatis extends AbstractJUnit4SpringContextTests{
 		mDesign.createNoneLeafCatalogNode("(分类)型号A", 1);
 		mDesign.createNoneLeafCatalogNode("(分类)型号B", 2);
 	}*/
+<<<<<<< HEAD
 	
 	/*@Test
 	public void testUserGroup(){
@@ -100,6 +117,100 @@ public class TestMybatis extends AbstractJUnit4SpringContextTests{
 			e.printStackTrace();
 		}*/
 	}
+=======
+	@Test
+	public void testInsert(){
+		Catalog log = new Catalog();
+		log.setName("test");
+		int id = mapper.insert(log);
+		System.out.println(id);
+		id = mapper.selectLastInsertId();
+		System.out.println(id);
+	}
+
+	@Test
+	public void testInsertPackage(){
+		PackageInfo new_package = new PackageInfo();
+		new_package.setId(2);
+		new_package.setName("test");
+		new_package.setPid("");
+		new_package.setSid("");
+		new_package.setDirectorId(0);
+		new_package.setModelId(1);
+		packageInfoMapper.insert(new_package);
+	}
+
+	@Test
+	public void testUpdate(){
+		PackageInfo new_package = new PackageInfo();
+		new_package.setId(72);
+		new_package.setName("zhongwen");
+		new_package.setPid("");
+		new_package.setSid("");
+		new_package.setDirectorId(0);
+		new_package.setModelId(1);
+		new_package.setExtraAttributes("属性值");
+		packageInfoMapper.updateByPrimaryKey(new_package);
+	}
+
+	@Test
+	public void testSelectData(){
+		DataValue value = dataValueMapper.selectByInfoId(2);
+		System.out.print(value.getValue());
+	}
+
+
+	
+	/*@Test
+	public void testUserGroup(){
+		UserGroup ug=new UserGroup();
+		ug.setGroupName("游客");
+		ug.setGroupNo(4444);
+		ug.setRemark("测试添加");
+		try {
+			userGroupService.save(ug);
+		} catch (DataExistsException e) {
+			e.printStackTrace();
+		}
+	}*/
+	
+	@Test
+	public void testUser(){
+		User user=new User();
+		user.setGroupId(4);
+		user.setRoleId(4);
+		user.setUserName("visitor");
+		user.setPassword(PwdHelper.encryptPassword("123456"));
+		user.setPackageId("#");
+		try {
+			userService.save(user);
+		} catch (UserExistsException e) {
+			e.printStackTrace();
+		}
+		/*User user1=new User();
+		user1.setGroupId(002);
+		user1.setRoleId(2);
+		user1.setUserName("dataDesigner");
+		user1.setPassword(PwdHelper.encryptPassword("123456"));
+		user1.setPackageId("#");
+		try {
+			userService.save(user1);
+		} catch (UserExistsException e) {
+			e.printStackTrace();
+		}
+		User user2=new User();
+		user2.setGroupId(003);
+		user2.setRoleId(3);
+		user2.setUserName("engineer");
+		user2.setPassword(PwdHelper.encryptPassword("123456"));
+		user2.setPackageId("#001");
+		try {
+			userService.save(user2);
+		} catch (UserExistsException e) {
+			e.printStackTrace();
+		}*/
+	}
+>>>>>>> origin/master
 	
 	/*@Test
 	public void testUserRole(){

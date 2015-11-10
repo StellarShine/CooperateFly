@@ -1,23 +1,24 @@
 package com.cooperate.fly.web.util;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import com.cooperate.fly.bo.Catalog;
-import com.cooperate.fly.bo.PackageDesign;
-import com.cooperate.fly.bo.SysMenu;
+import com.cooperate.fly.bo.*;
+import com.cooperate.fly.mapper.DataValueMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class WebFrontHelper {
-	
+
+	@Autowired
+	private DataValueMapper dataValueMapper;
+
 	/**
 	 * 创建目录结构树
 	 * @param catalogs
 	 * @param idsForChecked
 	 * @return
 	 */
-	public static CatalogNode buildTreeForEasyuiTree(List<Catalog> catalogs, List<Integer> idsForChecked) {
+	public static CatalogNode buildTreeForEasyuiTreeCataLog(List<Catalog> catalogs, List<Integer> idsForChecked) {
+
 		
 		Map<Integer, CatalogNode> map = new LinkedHashMap<Integer, CatalogNode>();
 
@@ -67,12 +68,13 @@ public class WebFrontHelper {
 		return root;
 	}
 	
-	public static CatalogNode buildTreeForEasyuiTree(List<Catalog> catalogs) {
-		return buildTreeForEasyuiTree(catalogs, null);
+
+	public static CatalogNode buildTreeForEasyuiTreeCataLog(List<Catalog> catalogs) {
+		return buildTreeForEasyuiTreeCataLog(catalogs, null);
 	}
 	
 	
-public static PackageDesignNode buildTreeForEasyuiTree(List<PackageDesign> packs, List<String> idsForChecked) {
+public static PackageDesignNode buildTreeForEasyuiTreePackage(List<PackageDesign> packs, List<String> idsForChecked) {
 		
 		Map<Integer, PackageDesignNode> map = new LinkedHashMap<Integer, PackageDesignNode>();
 		PackageDesignNode root = new PackageDesignNode();
@@ -120,8 +122,8 @@ public static PackageDesignNode buildTreeForEasyuiTree(List<PackageDesign> packs
 		return root;
 	}
 	
-	public static PackageDesignNode buildTreeForEasyuiTree(List<PackageDesign> packageDesigns) {
-		return buildTreeForEasyuiTree(packageDesigns, null);
+	public static PackageDesignNode buildTreeForEasyuiTreePackage(List<PackageDesign> packageDesigns) {
+		return buildTreeForEasyuiTreePackage(packageDesigns, null);
 	}
 	
 	
@@ -200,4 +202,53 @@ public static SysMenu buildMenuTree(List<SysMenu> menus) {
 
 		return rootMenu;
 	}
+
+
+	/**
+	 * 构造数据项的树形结构
+	 * @param dataList
+	 * @return
+	 */
+	public static List<PackageData> buildPackageDataTree(List<PackageData> dataList){
+		Map<Integer, PackageData> map = new LinkedHashMap<Integer, PackageData>();
+		List<PackageData> result = new LinkedList<PackageData>();
+
+		for (PackageData data : dataList) {
+			if(data.getParentId() == 0)//根节点
+				result.add(data);
+			map.put(data.getId(), data);
+		}
+
+		for (Map.Entry<Integer, PackageData> entry : map.entrySet()) {
+			PackageData node = entry.getValue();
+			if(node.getId() != 0){
+				PackageData parent = map.get(node.getParentId());
+				if (parent != null)
+					parent.addChild(node);
+			}
+		}
+
+		for (Map.Entry<Integer, PackageData> entry : map.entrySet()) {
+			PackageData node = entry.getValue();
+			node.nodeIsLeaf();
+		}
+
+		return result;
+	}
+
+    public static List<UserNode> buildUserGrid(List<User> users){
+        List<UserNode> userNodes=new ArrayList<UserNode>();
+        for(int i=0;i<users.size();i++) {
+            UserNode un = new UserNode();
+            un.setId(users.get(i).getId());
+            un.setUserName(users.get(i).getUserName());
+
+            un.setRoleId((users.get(i).getRoleId())==null?0:(users.get(i).getRoleId()));
+            un.setGroupId((users.get(i).getGroupId())==null?0:(users.get(i).getGroupId()));
+            userNodes.add(un);
+        }
+        return userNodes;
+    }
+
+
 }

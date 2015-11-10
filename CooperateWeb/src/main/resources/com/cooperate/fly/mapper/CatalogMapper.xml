@@ -31,12 +31,15 @@
     select 
     <include refid="Base_Column_List" />
     from catalog_table
-    where parent_id = #{parentId,jdbcType=INTEGER})
+    where parent_id = #{pid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from catalog_table
     where id = #{id,jdbcType=INTEGER}
   </delete>
+<select id="selectLastInsertId" resultType="java.lang.Integer">
+  SELECT last_insert_id()
+</select>
   <insert id="insert" parameterType="com.cooperate.fly.bo.Catalog" >
     insert into catalog_table (id, name, type, 
       parent_id)

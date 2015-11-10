@@ -50,4 +50,17 @@ public class DataInfo {
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
+
+    public DataInfo( String name, Integer type, Integer packageId, Integer parentId) {
+        this.name = name;
+        this.type = type;
+        this.packageId = packageId;
+        this.parentId = parentId;
+    }
+
+    public DataInfo(Integer id) {
+        this.id = id;
+    }
+
+    public DataInfo(){}
 }

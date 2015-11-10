@@ -1,10 +1,19 @@
 package com.cooperate.fly.service.user.impl;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> origin/master
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+<<<<<<< HEAD
+=======
+import com.cooperate.fly.web.util.UserNode;
+import com.google.gson.Gson;
+>>>>>>> origin/master
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -102,7 +111,12 @@ public class UserServiceImpl implements UserService{
 		return this.userMapper.loadUserByUserNameAndPassword(userName, password);
 	}
 
+<<<<<<< HEAD
 	@Override
+=======
+
+    @Override
+>>>>>>> origin/master
 	public Page<User> findPage(Map<String, Object> params, Pageable pageRequest) {
 		return this.userMapper.selectPageByParams(params, pageRequest);
 	}

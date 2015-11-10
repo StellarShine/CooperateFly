@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 public class WebUtils {
 	
 	/**
-     * 将request对象转换成T对象
+     *
      * @param request 
      * @param clazz
      * @return
@@ -29,7 +29,6 @@ public class WebUtils {
     }
     
     *//**
-     * 生成UUID
      * @return
      *//*
     public static String makeId(){

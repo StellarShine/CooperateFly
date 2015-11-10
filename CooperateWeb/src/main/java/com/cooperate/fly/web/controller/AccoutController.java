@@ -7,6 +7,10 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
+=======
+import com.cooperate.fly.web.util.*;
+>>>>>>> origin/master
 import org.apache.log4j.Logger;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicInterface2;
 import org.springframework.stereotype.Controller;
@@ -25,11 +29,14 @@ import com.cooperate.fly.service.user.RoleMenuService;
 import com.cooperate.fly.service.user.SysMenuService;
 import com.cooperate.fly.service.user.UserService;
 import com.cooperate.fly.util.Constant;
+<<<<<<< HEAD
 import com.cooperate.fly.web.util.CatalogNode;
 import com.cooperate.fly.web.util.EasyUITreeNode;
 import com.cooperate.fly.web.util.PackageDesignNode;
 import com.cooperate.fly.web.util.Result;
 import com.cooperate.fly.web.util.WebFrontHelper;
+=======
+>>>>>>> origin/master
 import com.google.gson.Gson;
 
 @Controller
@@ -46,6 +53,7 @@ public class AccoutController {
 	private ModelDesign modelDesign;
 	@Resource
 	private DataOperate dataOperate;
+<<<<<<< HEAD
 	/*
 	@RequestMapping(value="/hehe",method=RequestMethod.GET)
 	@ResponseBody
@@ -53,6 +61,9 @@ public class AccoutController {
 		return new Result("hhehe");
 	}
 	*/
+=======
+	
+>>>>>>> origin/master
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String loginPage(HttpSession session,Model model){
@@ -70,6 +81,7 @@ public class AccoutController {
 		int roleId=user.getRoleId();
 		if(roleId==2){
 			List<Catalog> catalogs=modelDesign.getCatalogNodes();
+<<<<<<< HEAD
 			CatalogNode root=WebFrontHelper.buildTreeForEasyuiTree(catalogs);
 			List nodelist=new LinkedList<CatalogNode>();
 			nodelist.add(root);
@@ -88,6 +100,19 @@ public class AccoutController {
 			model.addAttribute("catalogTreeJson", new Gson().toJson(nodelist));
 			return "operate";
 		}
+=======
+			CatalogNode root=WebFrontHelper.buildTreeForEasyuiTreeCataLog(catalogs);
+			
+			model.addAttribute("catalogTreeJson", new Gson().toJson(root.getChildren()));
+			return "model-design";
+		}else if(roleId==1){
+            List<User> userList=userService.findAll();
+            List<UserNode> userNodes=WebFrontHelper.buildUserGrid(userList);
+            log.info("usersize============"+userList.size());
+            model.addAttribute("userJson", new Gson().toJson(userNodes));
+            return "user-design";
+        }
+>>>>>>> origin/master
 		
 		return "grant-tips";
 		/*List<Integer> roleMenuIds=this.roleMenuService.findMenuIdsByRoleId(roleId);

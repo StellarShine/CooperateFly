@@ -38,8 +38,16 @@ public class PageController {
 	}
 	
 	//数据包信息描述中数据项的定义
+<<<<<<< HEAD
 	@RequestMapping("/catalog")
 	public String packageDesign(){
 		return "system/packageDesign";
 	}
+=======
+	@RequestMapping("/packageDesign")
+	public String packageDesign(){
+		return "system/packageDesign";
+	}
+
+>>>>>>> origin/master
 }
