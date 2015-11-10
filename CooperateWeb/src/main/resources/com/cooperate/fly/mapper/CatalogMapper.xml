@@ -22,6 +22,11 @@
     from catalog_table
     where name = #{name,jdbcType=VARCHAR}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from catalog_table
+  </select>
   <select id="selectByPid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

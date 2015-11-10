@@ -23,6 +23,12 @@
     from package_version
     where package_id = #{packageId,jdbcType=INTEGER}
   </select>
+  <select id="selectCaogao" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from package_version
+    where version_id = 0 and package_id = #{packageId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from package_version
     where id = #{id,jdbcType=INTEGER}
@@ -95,5 +101,10 @@
       version_id = #{versionId,jdbcType=INTEGER},
       parent_id = #{parentId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="commitCaogao" parameterType="com.cooperate.fly.bo.PackageVersion" >
+    update package_version
+    set version_id = #{versionId,jdbcType=INTEGER}
+    where version_id = 0 and package_id = #{packageId,jdbcType=INTEGER}
   </update>
 </mapper>
