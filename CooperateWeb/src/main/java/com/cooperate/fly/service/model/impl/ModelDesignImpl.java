@@ -30,7 +30,7 @@ public class ModelDesignImpl implements ModelDesign {
 	@Autowired
 	ModelInfoMapper modelinfomapper;
 	@Override
-	public int createNoneLeafCatalogNode(String nodeName, int parentId) {
+	public int createModelCatalogNode(String nodeName, int parentId) {
 		id ++;
 		Catalog record = new Catalog();
 		record.setId(id);
@@ -60,13 +60,25 @@ public class ModelDesignImpl implements ModelDesign {
 	}
 
 	@Override
+	public int createPackageCatalogNode(String nodeName, int parentId) {
+		id ++;
+		Catalog record = new Catalog();
+		record.setId(id);
+		record.setName(nodeName);
+		record.setParentId(parentId);
+		record.setType(2);        //2
+		catalogmapper.insert(record);
+		return 0;
+	}
+	
+	@Override
 	public int createPackageNode(String nodeName, int parentId) {
 		id ++;
 		Catalog record = new Catalog();
 		record.setId(id);
 		record.setName(nodeName);
 		record.setParentId(parentId);
-		record.setType(2);        //2:��ݰ�ڵ�
+		record.setType(3);        //2:��ݰ�ڵ�
 		catalogmapper.insert(record);
 		//create package
 		PackageInfo new_package = new PackageInfo();
@@ -92,8 +104,7 @@ public class ModelDesignImpl implements ModelDesign {
 	}
 
 	@Override
-	public int createNoneLeafDataNode(String nodeName,int nodeId) {//DataInfoMapper.xml��insertҪ��,���ò���id����
-		int parentId = Utils.findParentWhenCreated();
+	public int createNoneLeafDataNode(String nodeName,int nodeId, int parentId) {//DataInfoMapper.xml��insertҪ��,���ò���id����
 		DataInfo record = new DataInfo();
 		record.setName(nodeName);
 		record.setParentId(parentId);
@@ -104,8 +115,7 @@ public class ModelDesignImpl implements ModelDesign {
 	}
 
 	@Override
-	public int createLeafDataNode(String nodeName, int type, int nodeId) {
-		int parentId = Utils.findParentWhenCreated();
+	public int createLeafDataNode(String nodeName, int type, int nodeId, int parentId) {
 		DataInfo record = new DataInfo();
 		record.setName(nodeName);
 		record.setParentId(parentId);
@@ -232,5 +242,11 @@ public class ModelDesignImpl implements ModelDesign {
 		}
 		return node.getId();
 	}
+
+	@Override
+	public List<Catalog> getCatalogNodes() {
+		return catalogmapper.selectAll();
+	}
+
 
 }

@@ -5,7 +5,7 @@
 <generatorConfiguration>
     <!--数据库驱动-->
     <classPathEntry    location="C:\Users\Stellar_Lee\.m2\repository\mysql\mysql-connector-java\5.1.18\mysql-connector-java-5.1.18.jar"/>
-    <context id="StaffStructure"    targetRuntime="MyBatis3">
+    <context id="catalog_table"    targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
@@ -17,19 +17,19 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.cooperate.fly.bo" targetProject="E:\work\projectWorkspace\CooperateWeb\src\main\java\">
+        <javaModelGenerator targetPackage="com.cooperate.fly.bo" targetProject="E:\work\gitworkspace\CooperateFly\CooperateWeb\src\main\java\">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="com.cooperate.fly.mapper" targetProject="E:\work\projectWorkspace\CooperateWeb\src\main\resources\">
+        <sqlMapGenerator targetPackage="com.cooperate.fly.mapper" targetProject="E:\work\gitworkspace\CooperateFly\CooperateWeb\src\main\resources\">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成Dao类存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cooperate.fly.mapper" targetProject="E:\work\projectWorkspace\CooperateWeb\src\main\java\">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cooperate.fly.mapper" targetProject="E:\work\gitworkspace\CooperateFly\CooperateWeb\src\main\java\">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="staff_structure" domainObjectName="StaffStructure" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="package_info" domainObjectName="PackageInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

@@ -10,7 +10,7 @@ public class Dialect {
 	}
 	
 	/**
-	 * ½«sql±äÎªÊ¹ÓÃoffset,limitµÄÖµ×÷ÎªÕ¼Î»·ûµÄ·ÖÒ³sqlÓï¾ä
+	 * ï¿½ï¿½sqlï¿½ï¿½ÎªÊ¹ï¿½ï¿½offset,limitï¿½ï¿½Öµï¿½ï¿½ÎªÕ¼Î»ï¿½ï¿½Ä·ï¿½Ò³sqlï¿½ï¿½ï¿½
 	 * @param sql
 	 * @param offset
 	 * @param limit
@@ -25,7 +25,7 @@ public class Dialect {
 	}
 	
 	/**
-	 * ½«sql×ª»¯Îª×Ü¼ÇÂ¼ÊýSQL
+	 * ï¿½ï¿½sql×ªï¿½ï¿½Îªï¿½Ü¼ï¿½Â¼ï¿½ï¿½SQL
 	 */
 	public String getCountString(String sql){
 		return "select count(1) from ("+sql+") temp_count";

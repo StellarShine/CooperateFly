@@ -23,6 +23,14 @@
     from data_value
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByVersion" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from data_value
+    where version_id = #{versionId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from data_value
     where id = #{id,jdbcType=INTEGER}
@@ -91,5 +99,10 @@
     set version_id = #{versionId,jdbcType=INTEGER},
       data_info_id = #{dataInfoId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateCaogaoValue" parameterType="com.cooperate.fly.bo.DataValue" >
+    update data_value
+    set value = #{value,jdbcType=LONGVARCHAR}
+    where version_id = #{versionId,jdbcType=INTEGER} and data_info_id = #{dataInfoId,jdbcType=INTEGER}
   </update>
 </mapper>
